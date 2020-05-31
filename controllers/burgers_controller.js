@@ -20,7 +20,7 @@ router.get("/", function (req, res) {
 router.post("/insertOne", function (req, res) {
     //passes data into HTML         
     //call it random name - potato    
-    burger.insertOne(req.body.burger_name, function (cheese) {
+    burger.insertOne(req.body.burger_name, function (param) {
         //redirects it to main page
         res.redirect("/")
     });

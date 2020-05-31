@@ -1,5 +1,5 @@
 const connection = require("./connection.js");
-//Select All ORM
+
 const orm = {
     selectAll: function(table, callback) {
         const queryString = "SELECT * FROM ??;";
@@ -9,11 +9,11 @@ const orm = {
         });
     },
     //Insert 
-    insertOne: function(gryffindor, hufflepuff, ravenclaw, callback) {
+    insertOne: function(item1, item2, item3, callback) {
     const queryString = "INSERT INTO ?? (??) VALUES (?);"
-        connection.query(queryString, [gryffindor, hufflepuff, ravenclaw], function(err, slytherin){
+        connection.query(queryString, [item1, item2, item3], function(err, param){
             if (err) throw err;
-        callback(slytherin);
+        callback(param);
     });
     },
     //Update
