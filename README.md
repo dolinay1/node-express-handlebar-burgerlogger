@@ -6,10 +6,6 @@ This app allows the user to create and "eat" burgers using MySQL, Node, Express,
 
 ![burger home](burger.png)
 
-
-## Demo
-Navigate to [Demo](https://alinavo-burger.herokuapp.com/) hosted on [Heroku](https://www.heroku.com/).
-
 ## Setup
 ```
 npm init
