@@ -1,26 +1,36 @@
-const path = require('path');
-const PORT = process.env.PORT || 8080;
+//require express
+const express = require("express");   
+//require express-handlebars
+const exphbs = require("express-handlebars");    
+//require body-parser                                
+const bodyParser = require("body-parser");                            
+//require burgers_controllers
+const routes = require("./controllers/burgers_controller.js");      
+//express call using app
+const app = express();                       
+//local host port 8080                        
+const PORT = process.env.PORT || 8080;                              
 
-const express = require('express');
-const exphbs  = require('express-handlebars');
-const app = express();
+//public folder
+app.use(express.static("public"));                                
 
-// Make use of the body-parsers
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+//parses JSON
+app.use(bodyParser.json());                                         
+app.use(bodyParser.urlencoded({ extended: true }));                 
 
-// Set static directory reference path
-app.use(express.static(path.join(__dirname, 'public'))); 
+//handlebars run using main for content
+app.engine("handlebars", exphbs({                                 
+    defaultLayout: "main"                                        
+}));
 
-// Handlebars middleware
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.set("view engine", "handlebars");                               
 
-// Load router middleware
-const router = require('./controllers/burgers_controller');
-app.use('/', router);
+//calls api routes
+app.use(routes);                                                 
 
-// Start the server to listen to the port
-app.listen(PORT, () => {
-  console.log('Server started listening on port ' + PORT);
+app.listen(PORT, function(){                             
+console.log("Listening on Port: " + PORT);
 });
+
+
+

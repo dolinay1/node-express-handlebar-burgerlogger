@@ -20,7 +20,7 @@ router.get("/", function (req, res) {
 router.post("/insertOne", function (req, res) {
     //passes data into HTML         
     //call it random name - potato    
-    burger.insertOne(req.body.burger_name, function (param) {
+    burger.insertOne(req.body.burger_name, function (cheese) {
         //redirects it to main page
         res.redirect("/")
     });
@@ -28,7 +28,7 @@ router.post("/insertOne", function (req, res) {
 //POST REQUEST - Update
 router.post("/updateOne/:id", function (req, res) {
     // holds burgers being devoured 
-    const condition = "id = " + req.params.id;
+    let condition = "id = " + req.params.id;
     burger.updateOne({
         // Use updateOne from burger.js
         devoured: req.body.devoured
@@ -40,7 +40,7 @@ router.post("/updateOne/:id", function (req, res) {
 //POST REQUEST - Delete
 router.post("/deleteOne/:id", function (req, res) {
     // holds burger being deleted     
-    const condition = "id = " + req.params.id;
+    let condition = "id = " + req.params.id;
     // Redirect to the homepage                 
     burger.deleteOne(condition, function () {
         res.redirect("/");
